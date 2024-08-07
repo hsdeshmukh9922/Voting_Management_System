@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Registration</title>
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: hsl(218deg 50% 91%);
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: hsl(233deg 36% 38%);
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+        }
+        .navbar h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: hsl(233deg 36% 38%);
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: hsl(233deg 36% 38%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-weight: bold;
+        }
+        input[type="submit"]:hover {
+            background-color: hsl(233deg 36% 28%);
+        }
+        a {
+            display: block;
+            margin-top: 10px;
+            color: hsl(233deg 36% 38%);
+            text-decoration: none;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .message {
+            color: red;
+            margin-top: 10px;
+            font-size: 14px;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Voter Registration</h1>
+    </div>
+    <div class="container">
+        <h2>Register to Vote</h2>
+        <form th:action="@{/voter/register}" method="post">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="text" name="age" placeholder="Age" required>
+            <input type="text" name="mobile" placeholder="Mobile Number" required>
+            <input type="text" name="aadhaar" placeholder="Aadhaar Number" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Register">
+        </form>
+        <a th:href="@{/voter/login}">Already have an account? Login here</a>
+        <div th:text="${message}" class="message"></div>
+    </div>
+</body>
+</html>

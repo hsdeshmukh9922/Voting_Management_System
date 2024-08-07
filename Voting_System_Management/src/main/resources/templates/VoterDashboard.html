@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Dashboard</title>
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: hsl(218deg 50% 91%);
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: hsl(233deg 36% 38%);
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .navbar h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 20px; 
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .welcome {
+            margin-bottom: 20px;
+        }
+        .welcome h2 {
+            color: hsl(233deg 36% 38%);
+            margin-bottom: 10px;
+        }
+        .welcome p {
+            color: #555;
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .action-box {
+            background-color: hsl(233deg 36% 38%);
+            color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .action-box:hover {
+            background-color: hsl(233deg 36% 28%);
+        }
+        .action-box a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .action-box a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Voter Dashboard</h1>
+    </div>
+    <div class="container">
+        <div class="welcome">
+            <h2>Welcome, <span th:text="${voterName}">[Voter Name]</span>!</h2>
+            <p>Here you can view your information and manage your voting preferences.</p>
+        </div>
+        <div class="actions">
+            <div class="action-box">
+                <a href="/voter/viewProfile">View Profile</a>
+            </div>
+            <div class="action-box">
+                <a href="/voter/updateProfile">Update Details</a>
+            </div>
+            <div class="action-box">
+                <a href="/election/status">View Election Status</a>
+            </div>
+            <div class="action-box">
+                <a href="/voter/register">Logout</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

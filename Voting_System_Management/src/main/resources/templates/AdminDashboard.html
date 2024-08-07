@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: hsl(200deg 100% 95%);
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: hsl(200deg 50% 40%);
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+        }
+        .navbar h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f0f8ff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile, .voters, .election {
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: hsl(200deg 50% 40%);
+            margin-bottom: 10px;
+        }
+        .profile p {
+            font-size: 16px;
+            color: #555;
+        }
+        .voters table, .election table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .voters table, .voters th, .voters td, .election table, .election th, .election td {
+            border: 1px solid #ddd;
+        }
+        .voters th, .voters td, .election th, .election td {
+            padding: 10px;
+            text-align: left;
+        }
+        .voters th, .election th {
+            background-color: hsl(200deg 50% 40%);
+            color: white;
+        }
+        .voters tr:nth-child(even), .election tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .voters tr:hover, .election tr:hover {
+            background-color: #f1f1f1;
+        }
+        .delete-btn {
+            background-color: hsl(0deg 100% 70%);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .delete-btn:hover {
+            background-color: hsl(0deg 100% 50%);
+        }
+        .message {
+            color: red;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .schedule-btn {
+            background-color: hsl(120deg 50% 40%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .schedule-btn:hover {
+            background-color: hsl(120deg 50% 30%);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Admin Dashboard</h1>
+    </div>
+    <div class="container">
+        <div class="profile">
+            <h2>Admin Profile</h2>
+            <p><strong>Admin ID:</strong> <span th:text="${adminId}">[Admin ID]</span></p>
+            <p><strong>Admin Name:</strong> <span th:text="${adminName}">[Admin Name]</span></p>
+        </div>
+        
+        <div class="voters">
+            <h2>Registered Voters</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Voter ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Mobile</th>
+                        <th>Aadhaar</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="voter : ${voters}">
+                        <td th:text="${voter.id}">1</td>
+                        <td th:text="${voter.name}">John Doe</td>
+                        <td th:text="${voter.age}">30</td>
+                        <td th:text="${voter.mobile}">1234567890</td>
+                        <td th:text="${voter.aadhaar}">1234-5678-9012</td>
+                        <td><button class="delete-btn" th:onclick="'deleteVoter(' + ${voter.id} + ')'">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="election">
+            <h2><a href="/admin/scheduleElection" class="schedule-link">Schedule Election</a></h2>       
+        </div>
+    </div>
+
+    <script>
+        function deleteVoter(voterId) {
+            if (confirm("Are you sure you want to delete this voter?")) {
+                fetch(`/admin/deleteVoter/${voterId}`, {
+                    method: 'DELETE',
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Voter deleted successfully');
+                        location.reload();
+                    } else {
+                        alert('Failed to delete voter');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

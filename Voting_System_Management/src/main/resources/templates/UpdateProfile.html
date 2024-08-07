@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #007bff;
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .navbar h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 80px auto 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .form-group input:focus {
+            border-color: #007bff;
+        }
+        .form-actions {
+            text-align: right;
+        }
+        .form-actions button {
+            background-color: hsl(233deg 36% 38%);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-actions button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            color: red;
+            margin-bottom: 15px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Update Profile</h1>
+    </div>
+    <div class="container">
+        <form th:action="@{/voter/updateProfile}" method="post">
+            <div th:if="${message}" class="message" th:text="${message}"></div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" th:value="${voter.name}" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" th:value="${voter.age}" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile</label>
+                <input type="text" id="mobile" name="mobile" th:value="${voter.mobile}" required>
+            </div>
+            <div class="form-group">
+                <label for="aadhaar">Aadhaar</label>
+                <input type="text" id="aadhaar" name="aadhaar" th:value="${voter.aadhaar}" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit">Update Profile</button>
+            </div>
+        </form>
+        <div>
+            <a href="/voter/dashboard">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

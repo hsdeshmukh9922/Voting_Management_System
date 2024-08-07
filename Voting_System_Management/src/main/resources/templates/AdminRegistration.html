@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Registration</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: hsl(200deg 100% 95%);
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+        .container {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            width: 100%;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: hsl(200deg 50% 40%);
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #a3c2c2;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: hsl(200deg 50% 40%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+        input[type="submit"]:hover {
+            background-color: hsl(200deg 50% 30%);
+        }
+        a {
+            display: block;
+            margin-top: 10px;
+            color: hsl(200deg 50% 40%);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Registration</h2>
+        <form action="/admin/register" method="post">
+            <input type="text" id="name" name="name" placeholder="Admin Name" required>
+            <input type="text" name="adminId" placeholder="Admin ID" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Register">
+        </form>
+        <a th:href="@{/admin/login}">Already have an account? Login here</a>
+        <div th:text="${message}" class="message"></div>
+    </div>
+</body>
+</html>

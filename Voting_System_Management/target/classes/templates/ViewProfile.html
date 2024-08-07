@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #007bff;
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .navbar h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 80px auto 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-details {
+            margin-bottom: 20px;
+        }
+        .profile-details h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .profile-details p {
+            color: #555;
+            margin: 5px 0;
+        }
+        .profile-details p span {
+            font-weight: bold;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>View Profile</h1>
+    </div>
+    <div class="container">
+        <div class="profile-details">
+            <h2>Profile Information</h2>
+            <p><span>Name:</span> <span th:text="${voter.name}">[Name]</span></p>
+            <p><span>Age:</span> <span th:text="${voter.age}">[Age]</span></p>
+            <p><span>Mobile:</span> <span th:text="${voter.mobile}">[Mobile]</span></p>
+            <p><span>Aadhaar:</span> <span th:text="${voter.aadhaar}">[Aadhaar]</span></p>
+        </div>
+        <div>
+            <a href="/voter/dashboard">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>
